@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+    <title>无标题文档</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="hamburger"><span class="line"></span><span class="line"></span><span class="line"></span></div>
+        <nav>
+            <ul id="nav_ul">
+                <li><a href="#">标题1</a></li>
+                <li>
+                    <a href="#">8878878hjjhkjh65552</a>
+                    <ul>
+                        <li><a href="#">链接 1</a></li>
+                        <li><a href="#">链接 1</a></li>
+                        <li><a href="#">链接 1</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">标题345</a>
+                    <ul>
+                        <li><a href="#">链接 1</a></li>
+                        <li><a href="#">链接 1</a></li>
+                        <li><a href="#">链接 1</a></li>
+                        <li><a href="#">链接 1</a></li>
+
+
+                    </ul>
+                </li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div style="height: 100vh;"></div>
+        <div style="height: 1000px; background: rgba(255,0,4,1.00)"></div>
+    </section>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#hamburger").click(function () {
+                $(this).toggleClass("is-active");
+                $("nav ul").toggleClass("hamburger1");
+            });
+
+
+            if (window.innerWidth <= 992) {
+                $("nav ul>li").each(function () {
+                    if ($(this).find("ul li").length > 0) {
+                        $(this).find("ul").css('height', "auto");
+                        $(this).mouseover(function () {
+                            $(this).find("ul").css('height', "auto");
+                        })
+                        $(this).mouseout(function () {
+                            $(this).find("ul").css('height', "auto");
+                        })
+						
+						Scroll();
+                    }
+                    else {
+                        return true;
+                    }
+                });
+            }
+            else {
+                $("nav ul>li").each(function () {
+                    if ($(this).find("ul li").length > 0) {
+                        var la = $(this).find("ul li").length * $(this).find("ul li").innerHeight();//子元素高度
+
+                        $(this).find("ul").css('height', '0');
+
+                        $(this).mouseover(function () {
+                            $(this).find("ul").css('height', la);
+                        })
+                        $(this).mouseout(function () {
+                            $(this).find("ul").css('height', '0');
+                        })
+						
+                    } 
+					else { return true; }
+                });
+            }
+            $(window).resize(function () {
+                if (window.innerWidth <= 992) {
+                    $("nav ul>li").each(function () {
+                        if ($(this).find("ul li").length > 0) {
+                            $(this).find("ul").css('height', "auto");
+                            $(this).mouseover(function () {
+                                $(this).find("ul").css('height', "auto");
+                            })
+                            $(this).mouseout(function () {
+                                $(this).find("ul").css('height', "auto");
+                            })
+
+                        } else { return true; }
+                    })
+                }
+                else {
+                    $("nav ul>li").each(function () {
+                        if ($(this).find("ul li").length > 0) {
+                            var la = $(this).find("ul li").length * $(this).find("ul li").innerHeight();//子元素高度
+                            $(this).find("ul").css('height', '0');
+
+                            $(this).mouseover(function () {
+                                $(this).find("ul").css('height', la);
+                            })
+                            $(this).mouseout(function () {
+                                $(this).find("ul").css('height', '0');
+                            })
+                        } else { return true; }
+                    })
+                }
+            });
+        });
+
+    </script>
+        <script>
+		
+				
+				 function Scroll(){
+            hamburger.onclick = function () {
+                var targetY = null;
+                nav_ul.addEventListener('touchstart', function (e) {
+                    targetY = Math.floor(e.targetTouches[0].clientY);
+  
+                });
+                nav_ul.addEventListener('touchmove', function (e) {
+                    var NewTargetY = Math.floor(e.targetTouches[0].clientY), //本次移动时的位置，用于计算
+                      sTop = nav_ul.scrollTop, //当前滚动的距离
+                      sH = nav_ul.scrollHeight, //可滚动区域的高度
+                      lyBoxH = nav_ul.clientHeight; //可视区域的高度
+                    if (sTop <= 0 && NewTargetY - targetY > 0) {
+                        e.preventDefault();
+                    }
+                    else if (sTop >= sH - lyBoxH && NewTargetY - targetY < 0) {
+                        e.preventDefault();
+                    }
+                }, false);
+            }
+        };
+		
+       
+    </script>
+</body>
+</html>
